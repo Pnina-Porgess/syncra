@@ -1,20 +1,20 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
-
-const usersRoutes = require('./routes/users');
 const postsRoutes = require('./routes/posts');
-const todosRoutes = require('./routes/todos');
 const commentsRoutes = require('./routes/comments');
+const usersRoutes = require('./routes/users');
+const todosRoutes = require('./routes/todos');
 
 const app = express();
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
-app.use('/users', usersRoutes);
 app.use('/posts', postsRoutes);
-app.use('/todos', todosRoutes);
 app.use('/comments', commentsRoutes);
+app.use('/users', usersRoutes);
+app.use('/todos', todosRoutes);
 
-const PORT = 8080;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});

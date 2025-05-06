@@ -1,0 +1,168 @@
+/* General styles for the todos page */
+.todosHeader {
+  padding-top: 100px;
+  display: flex;
+margin-left: 30px;
+ gap: 100px;
+  flex-direction: row;
+}
+
+.newTodoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f9f9f9;
+  border: 2px solid #4caf50;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 400px;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.newTodoContainer input {
+  width: 70%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #4caf50;
+  border-radius: 5px;
+}
+
+
+
+.newTodoContainer button {
+  background-color: #d0e7e0;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.newTodoContainer button:hover {
+  background-color: #b7cdc5;
+}
+
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+  margin-right: 20px;
+}
+
+.searchContainer input {
+  width: 300px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #4caf50;
+  border-radius: 5px;
+}
+.searchContainer select
+{
+  height:30px;
+  width: 320px;
+  margin-bottom: 10px;
+  border: 2px solid #4caf50;
+  border-radius: 5px;
+}
+.showTodosContainer select
+{
+  width: 250px;
+  height:30px;
+  border: 2px solid #4caf50;
+  border-radius: 5px;
+}
+.todosContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.todoCard {
+  background-color: #f9f9f9;
+  border: 2px solid #4caf50;
+  border-radius: 10px;
+  padding: 15px;
+  width: 270px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s;
+}
+
+.todoCard:hover {
+  transform: scale(1.05);
+}
+
+.todoCard span {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.todoCard button {
+  margin: 5px 0;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.todoCard button:first-child {
+  background-color: #007bff;
+  color: white;
+}
+
+.todoCard button:first-child:hover {
+  background-color: #0056b3;
+}
+
+.todoCard button:last-child {
+
+  color: white;
+}
+
+.todoCard button:hover {
+  background-color: #c62828;
+}
+
+.showTodosContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+}
+
+.showTodosContainer button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.showTodosContainer button:hover {
+  background-color: #388e3c;
+}
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+.titleTodos
+{
+  margin-top: -20px;
+margin-bottom: 40px;
+}

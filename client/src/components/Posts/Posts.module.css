@@ -1,0 +1,327 @@
+.selectedPostModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 600px;
+  max-height: 80%;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+  overflow-y: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.postDetailsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.postDetailsContent {
+  margin-bottom: 20px;
+}
+
+.postDetailsContent p {
+  margin-bottom: 10px;
+
+}
+
+.postDetailsActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+.postsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* ריווח בין הפוסטים */
+  justify-content: flex-start; /* הצמדה להתחלה */
+  margin-top: 20px;
+}
+
+.postCard {
+  background-color: #f9f9f9; /* רקע אפור בהיר */
+  border: 2px solid #4caf50; /* מסגרת ירוקה */
+  border-radius: 10px; /* פינות מעוגלות */
+  padding: 15px;
+  width: 270px; /* רוחב אחיד לכל פוסט */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* הצללה */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s; /* אנימציה חלקה */
+}
+
+.postCard:hover {
+  transform: scale(1.05); /* הגדלה קלה כשעוברים עם העכבר */
+}
+
+.postCard span {
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: block; /* מציג טקסט בשורה נפרדת */
+}
+
+.postCard button {
+  margin: 5px 0;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.postCard button:first-child {
+  background-color: #007bff;
+  color: white;
+}
+
+.postCard button:first-child:hover {
+  background-color: #0056b3; /* שינוי צבע בכפתור הראשון בעת ריחוף */
+}
+
+.postCard button:last-child {
+  background-color: #f44336;
+  color: white;
+}
+
+.postCard button:last-child:hover {
+  background-color: #c62828; /* שינוי צבע בכפתור האחרון בעת ריחוף */
+}
+
+.newPostContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f9f9f9;
+  border: 2px solid #4caf50;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 300px;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* קונטיינר כללי */
+.postsHeader {
+  align-items: center;
+  margin-bottom: 20px;
+  padding-top: 100px;
+}
+
+/* קונטיינר להוספת פוסט */
+.newPostContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #f9f9f9;
+  border: 2px solid #4caf50;
+  border-radius: 10px;
+  padding: 20px;
+  width: 30%; /* להקטין את הרוחב */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* קונטיינר לחיפוש */
+.searchContainer {
+  width: 30%; /* להקטין את הרוחב */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* כפתור "SHOW" */
+.showPostsContainer {
+  display: flex;
+ flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%; /* להקטין את הרוחב */
+}
+
+.showPostsContainer button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.showPostsContainer button:hover {
+  background-color: #388e3c;
+}
+
+/* תצוגת הפוסטים */
+.postsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center; /* הצגת הפוסטים במרכז */
+  margin-top: 20px;
+}
+
+/* עיצוב כרטיס פוסט */
+.postCard {
+  background-color: #f9f9f9;
+  border: 2px solid #4caf50;
+  border-radius: 10px;
+  padding: 15px;
+  width: 270px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s;
+}
+
+.postCard:hover {
+  transform: scale(1.05);
+}
+
+.postCard span {
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.postCard button {
+  margin: 5px 0;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.postCard button:first-child {
+  background-color: #007bff;
+  color: white;
+}
+
+.postCard button:first-child:hover {
+  background-color: #0056b3;
+}
+
+.postCard button:last-child {
+  background-color: #f44336;
+  color: white;
+}
+
+.postCard button:last-child:hover {
+  background-color: #c62828;
+}
+
+/* עיצוב למודאל (פוסט נבחר) */
+.selectedPostModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 600px;
+  max-height: 80%;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+  justify-content: end;
+  overflow-y: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.postDetailsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.postDetailsContent {
+  margin-bottom: 20px;
+}
+
+.postDetailsContent p {
+  margin-bottom: 10px;
+}
+
+.postDetailsActions {
+  margin-top: 2000px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Overlay (שכבת רקע) */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.newPostContainer button:hover {
+  background-color: #b7cdc5;
+}
+
+.newPostContainer input {
+  width: 70%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #4caf50;
+  border-radius: 5px;
+}
+.searchContainer input {
+  width: 70%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #4caf50;
+  border-radius: 5px;
+}
+
+.newPostContainer button {
+  background-color: #d0e7e0;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.headerP{
+  margin-left: 15px;
+  gap: 150px;
+  display: flex;
+  justify-items: flex-start;
+flex-direction: row;
+}

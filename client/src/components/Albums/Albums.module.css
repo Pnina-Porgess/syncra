@@ -1,0 +1,115 @@
+/* Container for the entire Albums component */
+.albumsContainer {
+    margin-top: 7%;
+    font-family: Arial, sans-serif;
+/* Adjust to match Navbar height */
+  }
+  
+  /* Header for Albums */
+  .albumsHeader {
+    display: flex;
+  gap: 200px;
+    flex-direction: row;
+    margin-left: 150px;
+  }
+  
+  /* Error message styling */
+  .errorMessage {
+    color: red;
+    margin-bottom: 20px;
+  }
+  
+  /* Styling for the 'Create Album' section */
+  .createAlbumContainer {
+    margin-bottom: 20px;
+  }
+  
+  .createAlbumInput {
+    padding: 8px;
+    font-size: 16px;
+    margin-right: 10px;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .createAlbumButton {
+    padding: 8px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Styling for the Search input */
+  .searchContainer {
+    margin-bottom: 20px;
+  }
+ .createAlbumContainer input{
+    width: 130%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #4caf50;
+    border-radius: 5px;
+  }
+  .searchContainer input{
+    width: 130%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #4caf50;
+    border-radius: 5px; 
+  }
+  
+  .searchInput {
+    padding: 8px;
+    font-size: 16px;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  /* List of Albums */
+  .albumList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* ריווח בין הפוסטים */
+    justify-content: flex-start; /* הצמדה להתחלה */
+    margin-top: 20px;
+    margin-left: 50px;
+  }
+  
+ /* Styling for individual album items */
+.albumItem {
+    background-color: #f9f9f9; /* רקע אפור בהיר */
+    border: 2px solid #4caf50; /* מסגרת ירוקה */
+    border-radius: 10px; /* פינות מעוגלות */
+    padding: 15px;
+    width: 270px; /* רוחב אחיד לכל פוסט */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* הצללה */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease-in-out; /* אפקט החלקה בזמן שינוי גודל */
+  }
+  
+  /* Add scale effect when hovering over an album */
+  .albumItem:hover {
+    transform: scale(1.05); /* הגדלה של 5% */
+  }
+  
+  /* Styling for the album button */
+  .albumButton {
+    margin: 5px 0;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .albumButton strong {
+    font-weight: bold;
+  }

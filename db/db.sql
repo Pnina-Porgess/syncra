@@ -37,4 +37,3 @@ CREATE TABLE passwords (
 );
 INSERT INTO passwords (user_id, password_hash) VALUES (1, '1234'); -- כאן צריך לשים סיסמה מוצפנת
 
-SELECT * FROM passwords;

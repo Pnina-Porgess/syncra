@@ -1,0 +1,65 @@
+
+/* Navbar.module.css */
+.navbar {
+  position: fixed; /* שומר את ה-navbar למעלה */
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
+  background-color: #8dc2a4; /* צבע רקע */
+  color: white;
+  display: flex;
+  justify-content: space-between; /* מרחיק בין הקישורים לכפתור */
+  align-items: center;
+  z-index: 1000; /* מוודא שה-navbar מעל כל האלמנטים האחרים */
+  box-shadow: 0 2px 5px rgba(121, 211, 174, 0.1);
+  height: 80px; /* גובה navbar */
+}
+  
+  .navLinks {
+    display: flex;
+    gap: 250px; /* ריווח בין הקישורים */
+  }
+  
+  .link {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    transition: color 0.3s;
+  }
+  
+  .link:hover {
+    color: #137163; /* שינוי צבע בעת מעבר עם העכבר */
+  }
+  
+  .logoutBtn {
+    background-color: #085d43;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin-right: 100px;
+  }
+  .name
+  {
+    background-color: #085d43;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-left: 100px;
+    border-radius: 25px;
+    cursor: pointer;
+  
+    transition: background-color 0.7s;
+
+
+  }
+  .logoutBtn:hover {
+    
+    background-color: #4ae4a6;
+  }
+  
