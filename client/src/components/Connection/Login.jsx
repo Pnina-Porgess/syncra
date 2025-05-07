@@ -25,7 +25,7 @@ const Login = () => {
         const user = response.data;
         console.log("user", user);
         
-        login(user);
+        login(user.user);
         navigate('/home');
       } else {
         setError('Username or password is incorrect.');

@@ -78,14 +78,13 @@ const usersController = {
     }
   },
     // פונקציה לטיפול ב-LOGIN
-    login: async (req, res) => {
+  login: async (req, res) => {
         console.log("req.body", req.body);
         const { username, password } = req.body;
         console.log(password, username);
         if (!username || !password) {
           return res.status(400).json({ error: 'Missing username or password' });
         }
-    
         try {
           // בדיקת שם המשתמש
           const user = await usersService.getUserByUsername(username);
@@ -99,11 +98,11 @@ const usersController = {
    }
 
  
-   if (passwordData==password) {
+   if (!(passwordData===password)) {
      return res.status(401).json({ error: 'Invalid password' });
    }
-
-   res.status(200).json({ message: 'Login successful', userId: user.id });
+console.log("user", user);
+   res.status(200).json({ message: 'Login successful', user: user });
  } catch (error) {
    console.error(error);
    res.status(500).json({ error: 'Failed to login' });
