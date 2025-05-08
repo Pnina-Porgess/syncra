@@ -58,7 +58,8 @@ const Posts = () => {
     try {
       const newPostData = { userId: user.id, title: newPost.title, body: newPost.body };
       const response = await axios.post('http://localhost:3000/posts', newPostData);
-      setPosts([...posts, response.data]);
+      console.log('Post added:', response);
+      setPosts([...posts, newPostData]);
       setNewPost({ title: '', body: '' });
       setError('');
     } catch (err) {

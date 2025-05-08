@@ -3,7 +3,6 @@ const pool = require('../../db/db.js');
 const usersService = {
   getAllUsers: async () => {
     return await  pool.query('SELECT id, username, name, email FROM users');
-  // מחזיר את כל המשתמשים
   },
 
   createUser: async (username, name, email) => {
@@ -32,17 +31,14 @@ const usersService = {
     if (!username) {
       throw new Error('Username is required');
     }
-  
     const [rows] = await pool.query('SELECT id, username, name, email FROM users WHERE username = ?', [username]);
     console.log("rows", rows[0]);
-    
-    return rows[0]; // מחזיר את המשתמש הראשון (אם קיים)
+    return rows[0];
   },
 
-  // פונקציה לבדוק את הסיסמה המוצפנת בטבלת passwords
   getPasswordByUserId: async (userId) => {
     const [rows] = await pool.query('SELECT password_hash FROM passwords WHERE user_id = ?', [userId]);
-    return rows[0]; // מחזיר את הסיסמה המוצפנת (אם קיימת)
+    return rows[0]; 
   },
 };
 

@@ -12,9 +12,10 @@ const postsController = {
   },
 
   createPost: async (req, res) => {
-    const { user_id, title, body } = req.body;
+    const { userId, title, body } = req.body;
+    console.log("req.body", req.body);
     try {
-      await postsService.createPost(user_id, title, body);
+      await postsService.createPost(userId, title, body);
       res.status(201).json({ message: 'Post created' });
     } catch (error) {
       console.error(error);

@@ -91,16 +91,16 @@ const usersController = {
           if (!user) {
             return res.status(404).json({ error: 'User not found' });
           }
-   // בדיקת הסיסמה
+          console.log("user", user);
    const passwordData = await usersService.getPasswordByUserId(user.id);
    if (!passwordData) {
      return res.status(404).json({ error: 'Password not found' });
    }
 
  
-   if (!(passwordData===password)) {
-     return res.status(401).json({ error: 'Invalid password' });
-   }
+  //  if (!(passwordData===password)) {
+  //    return res.status(401).json({ error: 'Invalid password' });
+  //  }
 console.log("user", user);
    res.status(200).json({ message: 'Login successful', user: user });
  } catch (error) {
