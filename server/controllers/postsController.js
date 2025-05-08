@@ -11,11 +11,22 @@ const postsController = {
     }
   },
 
+  getAllPostsByUser: async (req, res) => {
+    const { userId } = req.params;
+    try {
+      const [posts] = await postsService.getAllPostsByUser(userId);
+      res.status(200).json(posts);
+    } catch (error) {
+      console.error('Error fetching posts by user:', error);
+      res.status(500).json({ error: 'Failed to fetch posts by user' });
+    }
+  },
+
   createPost: async (req, res) => {
     const { user_id, title, body } = req.body;
     try {
       await postsService.createPost(user_id, title, body);
-      res.status(201).json({ message: 'Post created' });
+      res.status(200).json({ message: 'Post created' });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Failed to create post' });
