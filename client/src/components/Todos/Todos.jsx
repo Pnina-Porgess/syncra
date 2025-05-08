@@ -19,7 +19,8 @@ const Todos = () => {
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/todos?userId=${user.id}`);
+        const response = await axios.get(`http://localhost:3000/todos/${user.id}`);
+        console.log(response.data)
         setTodos(response.data);
         setDisplayTodos(response.data)
       } catch (err) {
@@ -58,7 +59,7 @@ const Todos = () => {
     const newTodo = { userId: user.id, title: newTodoTitle, completed: false };
     try {
       const response = await axios.post('http://localhost:3000/todos', newTodo);
-      setTodos([...todos, response.data]);
+      setTodos([...todos, newTodo]);
       setNewTodoTitle('');
     } catch (err) {
       console.error('Failed to add todo:', err);
