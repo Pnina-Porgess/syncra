@@ -5,6 +5,10 @@ const postsService = {
     return pool.query('SELECT * FROM posts ORDER BY id ASC');
   },
 
+  getAllPostsByUser : async (userId) => {
+    return pool.query('SELECT * FROM posts WHERE user_id = ?', [userId]);
+  },
+
   createPost: async (user_id, title, body) => {
     return pool.query('INSERT INTO posts (user_id, title, body) VALUES (?, ?, ?)', [user_id, title, body]);
   },
