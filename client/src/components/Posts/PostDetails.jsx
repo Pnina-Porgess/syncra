@@ -5,25 +5,41 @@ import styles from './Posts.module.css';
 import { useUser } from '../../contexts/UserContext';
 
 const PostDetails = (props) => {
-  const { post, setSelectedPost, setPosts } = props;
+  const { post, setSelectedPost, setPosts, setDisplayPosts, posts, displayPosts } = props;
   const { user } = useUser();
   const [editedPost, setEditedPost] = useState({ title: post.title, body: post.body });
   const [showComments, setShowComments] = useState(false);
   const [isEditing, setIsEditing] = useState({ title: false, body: false });
+  const [error, setError] = useState('');
 
   const handleEditPost = async (field) => {
+    if (!editedPost[field].trim()) {
+      setError(`${field === 'title' ? 'Title' : 'Body'} cannot be empty.`);
+      return;
+    }
+
     try {
+      // יצירת אובייקט פוסט מעודכן
       const updatedPost = { ...post, [field]: editedPost[field] };
+
+      // עדכון הנתונים בשרת
       const response = await axios.put(`http://localhost:3000/posts/${post.id}`, updatedPost);
+
+      // עדכון הפוסט ברשימת הפוסטים ובפרטים הנבחרים
       setPosts((prevPosts) =>
-        prevPosts.map((p) =>
-          p.id === post.id ? { ...p, ...response.data } : p
-        )
+        prevPosts.map((p) => (p.id === post.id ? response.data : p))
+      );
+      setDisplayPosts((prevDisplayPosts) =>
+        prevDisplayPosts.map((p) => (p.id === post.id ? response.data : p))
       );
       setSelectedPost(response.data);
+
+      // סיום עריכת השדה הזה
       setIsEditing((prev) => ({ ...prev, [field]: false }));
+      setError('');
     } catch (err) {
       console.error(`Failed to edit ${field}:`, err);
+      setError(`Failed to update ${field}.`);
     }
   };
 
@@ -34,6 +50,9 @@ const PostDetails = (props) => {
           <h3>Post Details</h3>
           <button onClick={() => setSelectedPost(null)}>✖️</button>
         </div>
+
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+
         <div style={{ display: 'flex', alignItems: 'center' }}>
           {isEditing.title ? (
             <>
@@ -51,14 +70,15 @@ const PostDetails = (props) => {
           ) : (
             <>
               <p style={{ marginRight: '10px' }}>
-                <strong>Title:</strong> {post.title}
+                <strong>Title:</strong> {editedPost.title} {/* הצג את editedPost.title */}
               </p>
-              {user.id == post.userId && (
+              {user.id == post.user_id && (
                 <button onClick={() => setIsEditing((prev) => ({ ...prev, title: true }))}>✏️</button>
               )}
             </>
           )}
         </div>
+
         <div style={{ display: 'flex', alignItems: 'center' }}>
           {isEditing.body ? (
             <>
@@ -74,14 +94,15 @@ const PostDetails = (props) => {
           ) : (
             <>
               <p style={{ marginRight: '10px' }}>
-                <strong>Body:</strong> {post.body || 'No body content.'}
+                <strong>Body:</strong> {editedPost.body || 'No body content.'} {/* הצג את editedPost.body */}
               </p>
-              {user.id == post.userId && (
+              {user.id == post.user_id && (
                 <button onClick={() => setIsEditing((prev) => ({ ...prev, body: true }))}>✏️</button>
               )}
             </>
           )}
         </div>
+
         <button onClick={() => setShowComments((prev) => !prev)}>
           {showComments ? 'Hide Comments' : 'Show Comments'}
         </button>

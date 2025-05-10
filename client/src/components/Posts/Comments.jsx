@@ -8,8 +8,8 @@ const Comments = ({ postId }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
   const [error, setError] = useState('');
-  const [isEditingComment, setIsEditingComment] = useState(null); 
-  const [editedCommentText, setEditedCommentText] = useState(''); 
+  const [isEditingComment, setIsEditingComment] = useState(null);
+  const [editedCommentText, setEditedCommentText] = useState('');
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -29,8 +29,8 @@ const Comments = ({ postId }) => {
       return;
     }
     try {
-      const newCommentData = { postId, body: newComment,email: user.email };
-      const response = await axios.post('http://localhost:3000/comments', newCommentData);
+      const newCommentData = { postId, body: newComment, email: user.email };
+      const response = await axios.post(`http://localhost:3000/comments`, newCommentData);
       setComments([...comments, response.data]);
       setNewComment('');
       setError('');
@@ -98,13 +98,16 @@ const Comments = ({ postId }) => {
               </>
             ) : (
               <>
-              <div>
-              <strong>{comment.email}:</strong>
-              </div>
+                <div>
+                  <strong>{comment.email}:</strong>
+                </div>
                 <span>{comment.body}</span>
                 {comment.email === user.email && (
                   <>
-                    <button onClick={() => {setIsEditingComment(comment.id),setEditedCommentText(comment.body)}} style={{ marginLeft: '10px' }}>
+                    <button onClick={() => {
+                      setIsEditingComment(comment.id);
+                      setEditedCommentText(comment.body);
+                    }}>
                       🖊️
                     </button>
                     <button onClick={() => handleDeleteComment(comment.id)} style={{ marginLeft: '10px' }}>

@@ -13,13 +13,13 @@ const commentsController = {
   },
 
   createComment: async (req, res) => {
-    const { postId, userId, content } = req.body;
-    if (!postId || !userId || !content) {
+    const { postId, user_id, content } = req.body;
+    if (!postId || !user_id || !content) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
     try {
-      await commentsService.createComment(postId, userId, content);
+      await commentsService.createComment(postId, user_id, content);
       res.status(201).json({ message: 'Comment created' });
     } catch (error) {
       console.error(error);
