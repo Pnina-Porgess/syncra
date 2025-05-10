@@ -30,11 +30,13 @@ const todosController = {
   updateTodo: async (req, res) => {
     const { title, completed } = req.body;
     const { id } = req.params;
-    if (!title || completed === undefined) {
-      return res.status(400).json({ error: 'Missing required fields' });
+    // אם לא נשלח אף שדה לעדכון
+    if (title === undefined && completed === undefined) {
+      return res.status(400).json({ error: 'Missing fields to update' });
     }
-
+  
     try {
+      console.log("req.body", req.body);
       await todosService.updateTodo(id, title, completed);
       res.status(200).json({ message: 'Todo updated' });
     } catch (error) {
@@ -42,7 +44,6 @@ const todosController = {
       res.status(500).json({ error: 'Failed to update todo' });
     }
   },
-
   deleteTodo: async (req, res) => {
     const { id } = req.params;
 

@@ -5,12 +5,16 @@ const commentsService = {
     return pool.query('SELECT * FROM comments WHERE post_id = ?', [postId]);
   },
 
-  createComment: async (postId, userId, content) => {
-    return pool.query('INSERT INTO comments (post_id, user_id, content) VALUES (?, ?, ?)', [postId, userId, content]);
+  createComment: async (post_id,email,body) => {
+    return pool.query('INSERT INTO comments (post_id,email,body) VALUES (?, ?, ?)', [post_id,email,body]);
   },
 
   deleteComment: async (id) => {
     return pool.query('DELETE FROM comments WHERE id = ?', [id]);
+  },
+  updateComment: async (id, body) => {
+    const [result] = await pool.query('UPDATE comments SET body = ? WHERE id = ?', [body, id]);
+    return result; // מחזיר את תוצאת השאילתה
   },
 };
 
