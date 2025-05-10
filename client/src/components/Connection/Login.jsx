@@ -16,16 +16,13 @@ const Login = () => {
     const hashedPassword = CryptoJS.SHA256(password).toString();
   
     try {
-      const response = await axios.post('http://localhost:3000/users/login', {
-        username,
-        password: hashedPassword,
-      });
-  
+      const response = await axios.get(`http://localhost:3000/users?username=${username}&hashedPassword=${hashedPassword}`);
+      console.log("", response.data);
       if (response.data) {
         const user = response.data;
         console.log("user", user);
         
-        login(user.user);
+        login(user);
         navigate('/home');
       } else {
         setError('Username or password is incorrect.');

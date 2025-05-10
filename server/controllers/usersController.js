@@ -24,7 +24,20 @@ const usersController = {
           res.status(500).json({ error: 'Failed to fetch users' });
         }
       },
+ getUserById: async (req, res) => {
+    const { id } = req.params;
 
+    try {
+      const user = await usersService.getUserById(id);
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+      res.status(200).json(user);
+    } catch (error) {
+      console.error("Error fetching user by ID:", error);
+      res.status(500).json({ error: 'Failed to fetch user' });
+    }
+  },
       createUser: async (req, res) => {
         console.log("req.body", req.body);
         const { username, name, email, hashedPassword } = req.body;
@@ -79,31 +92,29 @@ const usersController = {
   },
     // פונקציה לטיפול ב-LOGIN
   login: async (req, res) => {
-        console.log("req.body", req.body);
-        const { username, password } = req.body;
-        console.log(password, username);
-        if (!username || !password) {
-          return res.status(400).json({ error: 'Missing username or password' });
-        }
-        try {
-          // בדיקת שם המשתמש
-          const user = await usersService.getUserByUsername(username);
-          if (!user) {
-            return res.status(404).json({ error: 'User not found' });
-          }
-   // בדיקת הסיסמה
-   const passwordData = await usersService.getPasswordByUserId(user.id,password);
-   console.log("passwordData", passwordData); 
-   if (!passwordData) {
-     return res.status(404).json({ error: 'Password not found' });
-   }
-console.log("user", user);
-   res.status(200).json({ message: 'Login successful', user: user });
- } catch (error) {
-   console.error(error);
-   res.status(500).json({ error: 'Failed to login' });
- }
-},  
+  const { username, password } = req.query;
+
+  if (!username || !password) {
+    return res.status(400).json({ error: 'Missing username or password' });
+  }
+
+  try {
+    const user = await usersService.getUserByUsername(username);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const passwordData = await usersService.getPasswordByUserId(user.id);
+    if (!passwordData || passwordData.password_hash !== password) {
+      return res.status(401).json({ error: 'Invalid password' });
+    }
+
+    res.status(200).json({ message: 'Login successful', user });
+  } catch (error) {
+    console.error("Error during login:", error);
+    res.status(500).json({ error: 'Failed to login' });
+  }
+},
 
 };
 

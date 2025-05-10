@@ -14,7 +14,8 @@ const Comments = ({ postId }) => {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/comments?postId=${postId}`);
+        const response = await axios.get(`http://localhost:3000/comments/${postId}`);
+        console.log("comments", response.data)
         setComments(response.data);
       } catch (err) {
         console.error('Failed to fetch comments:', err);
@@ -30,8 +31,8 @@ const Comments = ({ postId }) => {
     }
     try {
       const newCommentData = { postId, body: newComment,email: user.email };
-      const response = await axios.post('http://localhost:3000/comments', newCommentData);
-      setComments([...comments, response.data]);
+       await axios.post('http://localhost:3000/comments', newCommentData);
+      setComments([...comments, newCommentData]);
       setNewComment('');
       setError('');
     } catch (err) {
@@ -57,7 +58,7 @@ const Comments = ({ postId }) => {
     try {
       const updatedComment = { ...comment, body: editedCommentText };
       const response = await axios.put(`http://localhost:3000/comments/${comment.id}`, updatedComment);
-      setComments(comments.map((updateComment) => (updateComment.id === comment.id ? response.data : updateComment)));
+      setComments(comments.map((updateComment) => (updateComment.id === comment.id ? updatedComment: updateComment)));
       setIsEditingComment(null);
       setEditedCommentText('');
       setError('');

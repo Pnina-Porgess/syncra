@@ -58,7 +58,7 @@ const Todos = () => {
   const handleAddTodo = async () => {
     const newTodo = { userId: user.id, title: newTodoTitle, completed: false };
     try {
-      const response = await axios.post('http://localhost:3000/todos', newTodo);
+       await axios.post('http://localhost:3000/todos', newTodo);
       setTodos([...todos, newTodo]);
       setNewTodoTitle('');
     } catch (err) {
@@ -87,8 +87,8 @@ const Todos = () => {
   const handleSaveTodo = async (todo) => {
     try {
       const updatedTodo = { ...todo, title: editingTitle };
-      const response = await axios.put(`http://localhost:3000/todos/${todo.id}`, updatedTodo);
-      setTodos(todos.map((t) => (t.id === todo.id ? response.data : t)));
+      await axios.put(`http://localhost:3000/todos/${todo.id}`, updatedTodo);
+      setTodos(todos.map((t) => (t.id === todo.id ? updatedTodo : t)));
       setEditingTodoId(null);
       setEditingTitle('');
     } catch (err) {
