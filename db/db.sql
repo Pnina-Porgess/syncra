@@ -25,7 +25,6 @@ CREATE TABLE posts (
 CREATE TABLE comments (
   id INT AUTO_INCREMENT PRIMARY KEY,
   post_id INT,
-
   email VARCHAR(100),
   body TEXT,
   FOREIGN KEY (post_id) REFERENCES posts(id)

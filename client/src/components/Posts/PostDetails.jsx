@@ -27,12 +27,12 @@ const PostDetails = (props) => {
 
       // עדכון הפוסט ברשימת הפוסטים ובפרטים הנבחרים
       setPosts((prevPosts) =>
-        prevPosts.map((p) => (p.id === post.id ? response.data : p))
+        prevPosts.map((p) => (p.id === post.id ? updatedPost : p))
       );
       setDisplayPosts((prevDisplayPosts) =>
-        prevDisplayPosts.map((p) => (p.id === post.id ? response.data : p))
+        prevDisplayPosts.map((p) => (p.id === post.id ? updatedPost : p))
       );
-      setSelectedPost(response.data);
+      setSelectedPost(updatedPost);
 
       // סיום עריכת השדה הזה
       setIsEditing((prev) => ({ ...prev, [field]: false }));

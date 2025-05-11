@@ -8,8 +8,8 @@ const Comments = ({ postId }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
   const [error, setError] = useState('');
-  const [isEditingComment, setIsEditingComment] = useState(null);
-  const [editedCommentText, setEditedCommentText] = useState('');
+  const [isEditingComment, setIsEditingComment] = useState(null); 
+  const [editedCommentText, setEditedCommentText] = useState(''); 
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -31,8 +31,8 @@ const Comments = ({ postId }) => {
     }
     try {
       const newCommentData = { postId, body: newComment,email: user.email };
-       await axios.post('http://localhost:3000/comments', newCommentData);
-      setComments([...comments, newCommentData]);
+      const response= await axios.post('http://localhost:3000/comments', newCommentData);
+      setComments([...comments, response.data]);
       setNewComment('');
       setError('');
     } catch (err) {
@@ -57,9 +57,8 @@ const Comments = ({ postId }) => {
     }
     try {
       const updatedComment = { ...comment, body: editedCommentText };
-      const response = await axios.put(`http://localhost:3000/comments/${comment.id}`, updatedComment);
-      setComments(comments.map((updateComment) => (updateComment.id === comment.id ? updatedComment: updateComment)));
-      setIsEditingComment(null);
+      await axios.put(`http://localhost:3000/comments/${comment.id}`, updatedComment);
+ setComments(comments.map((updateComment) => (updateComment.id === comment.id ? updatedComment: updateComment)));      setIsEditingComment(null);
       setEditedCommentText('');
       setError('');
     } catch (err) {
@@ -99,16 +98,13 @@ const Comments = ({ postId }) => {
               </>
             ) : (
               <>
-                <div>
-                  <strong>{comment.email}:</strong>
-                </div>
+              <div>
+              <strong>{comment.email}:</strong>
+              </div>
                 <span>{comment.body}</span>
                 {comment.email === user.email && (
                   <>
-                    <button onClick={() => {
-                      setIsEditingComment(comment.id);
-                      setEditedCommentText(comment.body);
-                    }}>
+                    <button onClick={() => {setIsEditingComment(comment.id),setEditedCommentText(comment.body)}} style={{ marginLeft: '10px' }}>
                       🖊️
                     </button>
                     <button onClick={() => handleDeleteComment(comment.id)} style={{ marginLeft: '10px' }}>

@@ -29,7 +29,8 @@ const postsController = {
       return res.status(400).json({ error: 'Missing required fields' });
     }
     try {
-      const result = await postsService.createPost(user_id, title, body); // העברת הנתונים לשירות
+      const result = await postsService.createPost(user_id, title, body);
+      console.log("result", result.insertId, user_id, title, body) // העברת הנתונים לשירות
       res.status(201).json({ id: result.insertId, user_id, title, body }); // החזרת הפוסט שנוצר
     } catch (error) {
       console.error('Error creating post:', error);
