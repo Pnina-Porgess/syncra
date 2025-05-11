@@ -45,7 +45,7 @@ const Register = () => {
       const hashedPassword = CryptoJS.SHA256(password).toString();
     const newUser = {username,hashedPassword: hashedPassword,name:userDetails.fullName,email:userDetails.email,phone:userDetails.phone};
     const response = await axios.post('http://localhost:3000/users/', newUser);
-    const user = { username, id: response.data.id,email:userDetails.email  };
+    const user = { username, id: response.data.id,email:userDetails.email,phone:userDetails.phone };
       login(user);
       navigate('/home');
     } catch (err) {

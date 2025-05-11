@@ -5,11 +5,11 @@ const usersService = {
     return await  pool.query('SELECT id, username, name, email FROM users');
   },
   getUserById: async (id) => {
-    const [rows] = await pool.query('SELECT id, username, name, email FROM users WHERE id = ?', [id]);
+    const [rows] = await pool.query('SELECT * FROM users WHERE id = ?', [id]);
     return rows[0]; // מחזיר את המשתמש הראשון (אם קיים)
   },
-  createUser: async (username, name, email) => {
-   return pool.query('INSERT INTO users (username, name, email) VALUES (?, ?, ?)', [username, name, email]);
+  createUser: async (username, name, email,phone) => {
+   return pool.query('INSERT INTO users (username, name, email,phone) VALUES (?, ?, ?,?)', [username, name, email,phone]);
    
   },
 

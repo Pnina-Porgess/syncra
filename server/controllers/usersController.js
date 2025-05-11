@@ -40,14 +40,14 @@ const usersController = {
   },
       createUser: async (req, res) => {
         console.log("req.body", req.body);
-        const { username, name, email, hashedPassword } = req.body;
+        const { username, name, email, hashedPassword,phone } = req.body;
       
-        if (!username || !name || !email || !hashedPassword) {
+        if (!username || !name || !email || !hashedPassword||!phone) {
           return res.status(400).json({ error: 'Missing required fields' });
         }
       
         try {
-          const [result] = await usersService.createUser(username, name, email);
+          const [result] = await usersService.createUser(username, name, email,phone);
           console.log("רררררר", result);
       
           const userId = result.insertId; // ודא שה-ID נלקח נכון
