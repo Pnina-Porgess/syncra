@@ -44,7 +44,7 @@ const Photos = () => {
 
   const handleSaveTitle = async (photoId) => {
     try {
-      await axios.patch(`http://localhost:3000/photos/${photoId}`, {
+      await axios.put(`http://localhost:3000/photos/${photoId}`, {
         title: editPhoto.title
       });
       setPhotos(

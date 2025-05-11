@@ -20,9 +20,6 @@ const commentsController = {
 
     try {
      const [result]= await commentsService.createComment(postId,email,body);
-     console.log("result", result) // העברת הנתונים לשירות
-      // const result = await commentsService.createComment(postId, email, body);
-     console.log("result", result.insertId, postId, email, body) // העברת הנתונים לשירות
       res.status(201).json({id: result.insertId, postId, email, body });
     } catch (error) {
       console.error(error);
