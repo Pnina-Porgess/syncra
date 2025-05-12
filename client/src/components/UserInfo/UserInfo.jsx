@@ -28,7 +28,7 @@ const UserInfo = () => {
   return (
     <div>
         <Navbar/>
-      <h3>User Information</h3>
+      <h2>User Information</h2>
       <ul>
         <li><strong>Username:</strong> {userData.username}</li>
         <li><strong>Full Name:</strong> {userData.name}</li>
