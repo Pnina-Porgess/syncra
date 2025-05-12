@@ -1,22 +1,16 @@
 const usersService = require('../services/usersService');
 
 const usersController = {
-    getAllUsers: async (req, res) => {
+    getAllUser: async (req, res) => {
         try {
-          console.log("req.query", req.query);
-      
           if (req.query.username) {
-            // אם יש פרמטר username ב-query
             const user = await usersService.getUserByUsername(req.query.username);
             if(!user) {
                 return res.status(200).json();
             }
-            return res.status(200).json(user);
-           
+            return res.status(200).json(user);   
           } else {
-            // אם אין פרמטר username
             const users = await usersService.getAllUsers();
-            console.log("users", users);
             return res.status(200).json(users);
           }
         } catch (error) {
@@ -24,6 +18,21 @@ const usersController = {
           res.status(500).json({ error: 'Failed to fetch users' });
         }
       },
+  checkPassword: async (req, res) => {
+  const { id, hashedPassword } = req.query;
+  if (!id || !hashedPassword) {
+    return res.status(400).json({ error: 'Missing userId or password' });
+  }
+  try {
+    const isValid = await usersService.getPasswordByUserId(id, hashedPassword);
+     if (!isValid) {
+        return res.status(404).json({ error: 'Missing userId or password' });
+      }
+    res.status(200).json({message: 'User created' });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to check password' });
+  }
+},
  getUserById: async (req, res) => {
     const { id } = req.params;
 
@@ -38,7 +47,7 @@ const usersController = {
       res.status(500).json({ error: 'Failed to fetch user' });
     }
   },
-      createUser: async (req, res) => {
+  createUser: async (req, res) => {
         console.log("req.body", req.body);
         const { username, name, email, hashedPassword,phone } = req.body;
       
@@ -90,31 +99,7 @@ const usersController = {
       res.status(500).json({ error: 'Failed to delete user' });
     }
   },
-    // פונקציה לטיפול ב-LOGIN
-  login: async (req, res) => {
-  const { username, password } = req.query;
 
-  if (!username || !password) {
-    return res.status(400).json({ error: 'Missing username or password' });
-  }
-
-  try {
-    const user = await usersService.getUserByUsername(username);
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-
-    const passwordData = await usersService.getPasswordByUserId(user.id);
-    if (!passwordData || passwordData.password_hash !== password) {
-      return res.status(401).json({ error: 'Invalid password' });
-    }
-
-    res.status(200).json({ message: 'Login successful', user });
-  } catch (error) {
-    console.error("Error during login:", error);
-    res.status(500).json({ error: 'Failed to login' });
-  }
-},
 
 };
 

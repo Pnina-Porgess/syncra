@@ -16,19 +16,18 @@ const Login = () => {
     const hashedPassword = CryptoJS.SHA256(password).toString();
   
     try {
-      const response = await axios.get(`http://localhost:3000/users?username=${username}&hashedPassword=${hashedPassword}`);
-      console.log("", response.data);
+      const response = await axios.get(`http://localhost:3000/users/?username=${username}`);  
       if (response.data) {
-        const user = response.data;
-        console.log("user", user);
-        
-        login(user);
+    await axios.get(`http://localhost:3000/users/check-password?id=${response.data.id}&hashedPassword=${hashedPassword}`);
+        setError('Username or password is incorrect.');
+        login(response.data);
         navigate('/home');
-      } else {
+      }
+       else {
         setError('Username or password is incorrect.');
       }
     } catch (err) {
-      setError('Login failed. Please try again.');
+      setError('Username or password is incorrect.');
     }
   };
   

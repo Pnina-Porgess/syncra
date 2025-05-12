@@ -16,15 +16,6 @@ const photosController = {
       res.status(500).json({ error: 'Failed to fetch photos' });
     }
   },
-  // ...שאר הפונקציו
-//   getAllPhotos: async (req, res) => {
-//     try {
-//       const [photos] = await photosService.getAllPhotos();
-//       res.status(200).json(photos);
-//     } catch (error) {
-//       res.status(500).json({ error: 'Failed to fetch photos' });
-//     }
-//   },
   getPhotoById: async (req, res) => {
     try {
       const photo = await photosService.getPhotoById(req.params.id);

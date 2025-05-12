@@ -58,8 +58,9 @@ const Todos = () => {
   const handleAddTodo = async () => {
     const newTodo = { userId: user.id, title: newTodoTitle, completed: false };
     try {
-       await axios.post('http://localhost:3000/todos', newTodo);
-      setTodos([...todos, newTodo]);
+     const response=  await axios.post('http://localhost:3000/todos', newTodo);
+     console.log("response",response.data)
+      setTodos([...todos, response.data]);
       setNewTodoTitle('');
     } catch (err) {
       console.error('Failed to add todo:', err);

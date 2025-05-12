@@ -38,8 +38,9 @@ const usersService = {
 
   // פונקציה לבדוק את הסיסמה המוצפנת בטבלת passwords
   getPasswordByUserId: async (userId,password) => {
-    const [rows] = await pool.query('SELECT password_hash FROM passwords WHERE user_id = ? AND password_hash=?', [userId, password]);
-    console.log("rows", rows[0]);
+    console.log("userId", userId,password);
+    const [rows] = await pool.query('SELECT user_id  FROM passwords WHERE user_id = ? AND password_hash=?', [userId, password]);
+    console.log("rows", rows);
     return rows[0]; // מחזיר את הסיסמה המוצפנת (אם קיימת)
   },
 };

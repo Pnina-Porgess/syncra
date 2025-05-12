@@ -25,9 +25,7 @@ const Register = () => {
       return;
     }
     try {
-      const response = await axios.get(`http://localhost:3000/users?username=${username}`);
-    console.log(response.data);
-    
+      const response = await axios.get(`http://localhost:3000/users?username=${username}`);  
       if (response.data) {
         setError('Username already exists.');
       } else {

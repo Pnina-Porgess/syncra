@@ -19,8 +19,8 @@ const todosController = {
     }
 
     try {
-      await todosService.createTodo(userId, title, completed);
-      res.status(201).json({ message: 'Todo created' });
+      const [todos]=await todosService.createTodo(userId, title, completed);
+      res.status(201).json({id: todos.insertId,userId, title, completed});
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Failed to create todo' });
@@ -30,13 +30,9 @@ const todosController = {
   updateTodo: async (req, res) => {
     const { title, completed } = req.body;
     const { id } = req.params;
-    // אם לא נשלח אף שדה לעדכון
-    if (title === undefined && completed === undefined) {
-      return res.status(400).json({ error: 'Missing fields to update' });
-    }
-  
+
     try {
-      console.log("req.body", req.body);
+
       await todosService.updateTodo(id, title, completed);
       res.status(200).json({ message: 'Todo updated' });
     } catch (error) {
