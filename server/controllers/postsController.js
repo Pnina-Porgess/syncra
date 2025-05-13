@@ -23,14 +23,13 @@ const postsController = {
   },
 
   createPost: async (req, res) => {
-    const { user_id, title, body } = req.body; // וודא שהנתונים מתקבלים
-    console.log('Received data in controller:', { user_id, title, body }); // לוג לנתונים שהתקבלו
+    const { user_id, title, body } = req.body;
     if (!user_id || !title || !body) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
     try {
       const [result] = await postsService.createPost(user_id, title, body);
-      res.status(201).json({id: result.insertId, user_id, title, body }); // החזרת הפוסט שנוצר
+      res.status(201).json({id: result.insertId, user_id, title, body });
     } catch (error) {
       console.error('Error creating post:', error);
       res.status(500).json({ error: 'Failed to create post' });

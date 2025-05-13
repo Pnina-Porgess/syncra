@@ -6,13 +6,13 @@ import styles from './Todos.module.css'
 
 const Todos = () => {
 
-  const [todos, setTodos] = useState([]); // רשימת TODOS
-  const [filter, setFilter] = useState(''); // חיפוש
-  const [filterCriteria, setFilterCriteria] = useState('title'); // קריטריון חיפוש
-  const [sortCriteria, setSortCriteria] = useState(''); // קריטריון מיון
-  const [newTodoTitle, setNewTodoTitle] = useState(''); // יצירת TODO חדש
-  const [editingTodoId, setEditingTodoId] = useState(null); //איחוד
-  const [editingTitle, setEditingTitle] = useState(''); //איחוד
+  const [todos, setTodos] = useState([]);
+  const [filter, setFilter] = useState('');
+  const [filterCriteria, setFilterCriteria] = useState('title');
+  const [sortCriteria, setSortCriteria] = useState('');
+  const [newTodoTitle, setNewTodoTitle] = useState(''); 
+  const [editingTodoId, setEditingTodoId] = useState(null);
+  const [editingTitle, setEditingTitle] = useState('');
   const { user } = useUser();
   const [displayTodos, setDisplayTodos] = useState([]);
 
@@ -20,7 +20,6 @@ const Todos = () => {
     const fetchTodos = async () => {
       try {
         const response = await axios.get(`http://localhost:3000/todos/${user.id}`);
-        console.log(response.data)
         setTodos(response.data);
         setDisplayTodos(response.data)
       } catch (err) {
@@ -59,7 +58,6 @@ const Todos = () => {
     const newTodo = { userId: user.id, title: newTodoTitle, completed: false };
     try {
      const response=  await axios.post('http://localhost:3000/todos', newTodo);
-     console.log("response",response.data)
       setTodos([...todos, response.data]);
       setNewTodoTitle('');
     } catch (err) {

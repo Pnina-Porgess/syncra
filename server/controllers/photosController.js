@@ -45,7 +45,6 @@ const photosController = {
   },
   updatePhoto: async (req, res) => {
     const {  title } = req.body;
-    console.log("title", title)
     if ( title === undefined)
       return res.status(400).json({ error: 'Missing fields to update' });
     try {

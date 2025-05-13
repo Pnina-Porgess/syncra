@@ -14,7 +14,6 @@ const Login = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     const hashedPassword = CryptoJS.SHA256(password).toString();
-  
     try {
       const response = await axios.get(`http://localhost:3000/users/?username=${username}`);  
       if (response.data) {

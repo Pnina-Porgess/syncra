@@ -15,7 +15,6 @@ const Comments = ({ postId }) => {
     const fetchComments = async () => {
       try {
         const response = await axios.get(`http://localhost:3000/comments/${postId}`);
-        console.log("comments", response.data)
         setComments(response.data);
       } catch (err) {
         console.error('Failed to fetch comments:', err);
@@ -122,6 +121,3 @@ const Comments = ({ postId }) => {
 };
 
 export default Comments;
-
-
-// || comment.body

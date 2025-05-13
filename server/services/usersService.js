@@ -6,7 +6,7 @@ const usersService = {
   },
   getUserById: async (id) => {
     const [rows] = await pool.query('SELECT * FROM users WHERE id = ?', [id]);
-    return rows[0]; // מחזיר את המשתמש הראשון (אם קיים)
+    return rows[0];
   },
   createUser: async (username, name, email,phone) => {
    return pool.query('INSERT INTO users (username, name, email,phone) VALUES (?, ?, ?,?)', [username, name, email,phone]);
@@ -23,7 +23,6 @@ const usersService = {
   createPassword: async (userId, passwordHash) => {
     try {
       const [result] = await pool.query('INSERT INTO passwords (user_id, password_hash) VALUES (?, ?)', [userId, passwordHash]);
-      console.log("Password inserted, result:", result);
       return result;
     } catch (error) {
       console.error("Error in createPassword:", error);
@@ -32,16 +31,12 @@ const usersService = {
   },
   getUserByUsername: async (username) => {
     const [rows] = await pool.query('SELECT id, username, name, email FROM users WHERE username = ?', [username]);
-    console.log("rows", rows[0]);
     return rows[0];
   },
 
-  // פונקציה לבדוק את הסיסמה המוצפנת בטבלת passwords
   getPasswordByUserId: async (userId,password) => {
-    console.log("userId", userId,password);
     const [rows] = await pool.query('SELECT user_id  FROM passwords WHERE user_id = ? AND password_hash=?', [userId, password]);
-    console.log("rows", rows);
-    return rows[0]; // מחזיר את הסיסמה המוצפנת (אם קיימת)
+    return rows[0];
   },
 };
 

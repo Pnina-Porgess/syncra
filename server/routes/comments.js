@@ -5,6 +5,6 @@ const router = express.Router();
 router.get('/:postId', commentsController.getAllCommentsByPost);
 router.post('/', commentsController.createComment);
 router.delete('/:id', commentsController.deleteComment);
-router.put('/:id', commentsController.updateComment); // נתיב לעדכון תגובה
+router.put('/:id', commentsController.updateComment);
 
 module.exports = router;

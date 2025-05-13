@@ -10,8 +10,6 @@ const todosService = {
   },
 
   updateTodo: async (id, title, completed) => {
-    console.log("id", id);
-    console.log("title", title);
     return pool.query('UPDATE todos SET title = ?, completed = ?  WHERE id = ?', [title, completed, id]);
   },
 

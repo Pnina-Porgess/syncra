@@ -138,7 +138,6 @@ const Photos = () => {
         ))}
       </div>
 
-      {/* כפתור מעבר לדף הבא */}
       {loadMore && <button className={styles.loadMoreButton}   onClick={loadMorePhotos}>Load More Photos</button>}
       {!loadMore && <h4 className={styles.noMorePhotos}>no more photos yet ☹️</h4>}
     </div>

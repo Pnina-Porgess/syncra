@@ -19,13 +19,9 @@ const PostDetails = (props) => {
     }
 
     try {
-      // יצירת אובייקט פוסט מעודכן
       const updatedPost = { ...post, [field]: editedPost[field] };
-
-      // עדכון הנתונים בשרת
       const response = await axios.put(`http://localhost:3000/posts/${post.id}`, updatedPost);
 
-      // עדכון הפוסט ברשימת הפוסטים ובפרטים הנבחרים
       setPosts((prevPosts) =>
         prevPosts.map((p) => (p.id === post.id ? updatedPost : p))
       );
@@ -34,7 +30,6 @@ const PostDetails = (props) => {
       );
       setSelectedPost(updatedPost);
 
-      // סיום עריכת השדה הזה
       setIsEditing((prev) => ({ ...prev, [field]: false }));
       setError('');
     } catch (err) {
@@ -70,7 +65,7 @@ const PostDetails = (props) => {
           ) : (
             <>
               <p style={{ marginRight: '10px' }}>
-                <strong>Title:</strong> {editedPost.title} {/* הצג את editedPost.title */}
+                <strong>Title:</strong> {editedPost.title}
               </p>
               {user.id == post.user_id && (
                 <button onClick={() => setIsEditing((prev) => ({ ...prev, title: true }))}>✏️</button>
@@ -94,7 +89,7 @@ const PostDetails = (props) => {
           ) : (
             <>
               <p style={{ marginRight: '10px' }}>
-                <strong>Body:</strong> {editedPost.body || 'No body content.'} {/* הצג את editedPost.body */}
+                <strong>Body:</strong> {editedPost.body || 'No body content.'}
               </p>
               {user.id == post.user_id && (
                 <button onClick={() => setIsEditing((prev) => ({ ...prev, body: true }))}>✏️</button>

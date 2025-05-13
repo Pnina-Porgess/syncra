@@ -14,7 +14,7 @@ const commentsService = {
   },
   updateComment: async (id, body) => {
     const [result] = await pool.query('UPDATE comments SET body = ? WHERE id = ?', [body, id]);
-    return result; // מחזיר את תוצאת השאילתה
+    return result;
   },
 };
 

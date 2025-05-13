@@ -34,5 +34,5 @@ CREATE TABLE passwords (
   password_hash VARCHAR(255) NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
-INSERT INTO passwords (user_id, password_hash) VALUES (1, '1234'); -- כאן צריך לשים סיסמה מוצפנת
+INSERT INTO passwords (user_id, password_hash) VALUES (1, '1234');
 

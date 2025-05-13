@@ -69,7 +69,6 @@ const Posts = () => {
       const updatedPosts = [...posts, response.data];
       setPosts(updatedPosts);
 
-      // עדכון displayPosts לפי מצב תצוגה וחיפוש
       if (!searchQuery) {
         setDisplayPosts(updatedPosts);
       } else {

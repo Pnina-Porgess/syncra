@@ -10,7 +10,6 @@ const UserInfo = () => {
     if (user) {  
       const fetchUserData = async () => {
         try {
-          console.log(user.id)
           const response = await axios.get(`http://localhost:3000/users/${user.id}`);
           setUserData(response.data);  
         } catch (error) {
